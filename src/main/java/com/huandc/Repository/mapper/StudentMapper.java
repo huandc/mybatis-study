@@ -13,25 +13,26 @@ import java.util.Optional;
 
 @Mapper
 public interface StudentMapper {
-    @SelectProvider(method = "findAll", type = StudentMapper.SelectProviderSql.class)
+    @SelectProvider(type = StudentMapper.SelectProviderSql1.class)
     List<Student> findAll();
 
-    @SelectProvider(method = "findById", type = StudentMapper.SelectProviderSql.class)
+    @SelectProvider(type = StudentMapper.SelectProviderSql2.class)
     Optional<Student> findById(@Param("id") String id);
 
-    @SelectProvider(method = "findByIds", type = StudentMapper.SelectProviderSql.class)
+    @SelectProvider(type = StudentMapper.SelectProviderSql3.class)
     List<Student> findByIds(@Param("ids") List<String> ids);
 
 
-    class SelectProviderSql {
-        public static String findAll() {
+    class SelectProviderSql1 {
+        public static String provideSql() {
             SQL sql = new SQL();
             sql.SELECT("*");
             sql.FROM("students");
             return "<script>" + sql + "</script>";
         }
-
-        public static String findById(String id) {
+    }
+    class SelectProviderSql2 {
+        public static String provideSql(String id) {
             return new SQL() {{
                 SELECT("id", "name");
                 FROM("students");
@@ -40,8 +41,9 @@ public interface StudentMapper {
                 }
             }}.toString();
         }
-
-        public static String findByIds(List<String> ids) {
+    }
+    class SelectProviderSql3 {
+        public static String provideSql(List<String> ids) {
             return new SQL() {
                 {
                     SELECT("id", "name");
