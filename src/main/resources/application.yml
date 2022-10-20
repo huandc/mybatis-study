@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/school
     username: root
-    password: root
+    password: p@ssword
   jpa:
     show-sql: true
     hibernate:
@@ -15,4 +15,4 @@ spring:
     url: jdbc:mysql://localhost:3306
     schemas: school
     user: root
-    password: root
+    password: p@ssword
