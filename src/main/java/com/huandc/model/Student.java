@@ -1,14 +1,14 @@
 package com.huandc.model;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @RequiredArgsConstructor
+@AllArgsConstructor
 @Setter
 @Getter
+@Builder
 @Entity(name = "students")
 public class Student {
     @Id
